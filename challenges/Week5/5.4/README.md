@@ -1,0 +1,3 @@
+-What is happening without locks such that the record values get mixed up?
+
+Without locks, the program caueses a race condition where the the child processes will read and write on the shared .dat file in the wrong order. The scheduler may make it so that instead of child 1 reading incrementing and then writing, child 1 may read and then child 2 will read after, before incrementing or writing takes place even though thats the intended functionality. If the scheduling occurs out of order in this way (which it absolutely will with this many records), unpredictable behavior can occur.

@@ -1,0 +1,1 @@
+Without the SA_RESTART flag, return "read: Interrupted system call" and exit since read() returns -1 when the system call interrupts it. With SA_RESTART, it will simply continue the read syscall after the signal handler returns. 
