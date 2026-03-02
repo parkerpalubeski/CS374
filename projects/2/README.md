@@ -17,4 +17,4 @@ of the parent directory. Other file types are ignored.
 
 # Function Calls
 * `int main()` : Executes the program, parses the command line and calls print_dir()
-*   `print_dir()` : Function that recursively prints the directories
+  * `print_dir()` : Function that recursively prints the directories
