@@ -1,3 +1,5 @@
+# Description
+
 This program effectively acts as the `ls -a1` command in bash. 
 It takes an argument from the command line as an initial argument 
 for the directory to be listed (or no argument, in which case it 
@@ -13,8 +15,6 @@ perform this action for all levels of subdirectories, and return
 the size of all files and subdirectories to be added to the total 
 of the parent directory. Other file types are ignored.
 
-A function call diagram is a diagram used to visualize function 
-calls between different functions and the main functions of a 
-program. Functions are represented by boxes, which have arrows 
-drawn to other boxes to indicate which functions call others (or 
-in some cases, themselves!).
+# Function Calls
+* `int main()` : Executes the program, parses the command line and calls print_dir()
+*   `print_dir()` : Function that recursively prints the directories
