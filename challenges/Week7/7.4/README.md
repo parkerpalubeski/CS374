@@ -1,1 +1,3 @@
-This doesn't create the expected output, and since it gives different output each time, it's probably due to a race condition (and variation is just due to the scheduler). arr[i]+=1 is most likely the culprit here. Since += 1 actually involves multiple steps by the CPU, several threads might compete at the same time to complete the increment at different steps, which creates unexpected values.
+Short description of why the output is not as expected:
+
+Since it gives different output each time, it's probably due to a race condition (and variation is just due to the scheduler). arr[i]+=1 is most likely the culprit here. Since += 1 actually involves multiple steps by the CPU, several threads might compete at the same time to complete the increment at different steps, which creates unexpected values.

@@ -10,3 +10,5 @@ int main(void)
     fflush(stdout);
     close(fd);
 }
+
+//Before copying the file descriptor to stdout, you could copy stdout to another file descriptor using dup(), and use that copy
