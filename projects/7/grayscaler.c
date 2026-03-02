@@ -12,37 +12,7 @@ typedef struct  {
     int avgr, avgg, avgb, pixnum;
 }slice;
 
-void* thread(void* arg) {
-    (void)arg;
-    slice *thr = arg;
-    int finr = 0, fing = 0, finb = 0, p = 0;
-    for(int i = thr->start; i < thr->start + thr->height; i ++)//rows
-    {
-        for(int j = 0; j < thr->image->width; j++)//colums
-        {
-            int pix = ppm_get_pixel(thr->image, j, i);
-            int r = PPM_PIXEL_R(pix);
-            int g = PPM_PIXEL_G(pix);
-            int b = PPM_PIXEL_B(pix);
-
-            int gray = (299*r + 587*g + 114*b) / 1000;
-            ppm_set_pixel(thr->image, j, i, PPM_PIXEL(gray, gray, gray));
-            
-            finr += r;
-            fing += g;
-            finb += b;
-            p++;
-        }
-    }
-
-    thr->avgr = finr;
-    thr->avgg = fing;
-    thr->avgb = finb;
-    thr->pixnum = p;
-
-
-    return NULL;
-}
+void* thread(void* arg);
 
 int main(int argc, char* argv[])
 {
@@ -95,5 +65,38 @@ int main(int argc, char* argv[])
         perror("ppm_write");
         exit(1);
     }
+    ppm_free(img);
 
+}
+
+void* thread(void* arg) {
+    (void)arg;
+    slice *thr = arg;
+    int finr = 0, fing = 0, finb = 0, p = 0;
+    for(int i = thr->start; i < thr->start + thr->height; i ++)//rows
+    {
+        for(int j = 0; j < thr->image->width; j++)//colums
+        {
+            int pix = ppm_get_pixel(thr->image, j, i);
+            int r = PPM_PIXEL_R(pix);
+            int g = PPM_PIXEL_G(pix);
+            int b = PPM_PIXEL_B(pix);
+
+            int gray = (299*r + 587*g + 114*b) / 1000;
+            ppm_set_pixel(thr->image, j, i, PPM_PIXEL(gray, gray, gray));
+            
+            finr += r;
+            fing += g;
+            finb += b;
+            p++;
+        }
+    }
+
+    thr->avgr = finr;
+    thr->avgg = fing;
+    thr->avgb = finb;
+    thr->pixnum = p;
+
+
+    return NULL;
 }

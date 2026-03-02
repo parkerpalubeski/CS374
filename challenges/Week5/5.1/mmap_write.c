@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
         errorHandle("mmap");
     }
     *(int*)(data) = num;
-    *(float*)(data+8) = flt;
+    *(double*)(data+8) = flt;
     strcpy((char*)(data+16), str);
     if(munmap(data, DATA_SIZE) == -1)
     {

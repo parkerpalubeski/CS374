@@ -10,4 +10,4 @@ ppm.o: ppm.c ppm.h
 	$(CC) $(CFLAGS) -c ppm.c
 
 clean:
-	rm -f grayscaler *.o $(filter-out goat.ppm,$(wildcard *.ppm))
+	rm -f grayscaler *.o *.ppm
